@@ -1,0 +1,67 @@
+<html>
+<head><title>Instructions for database</title>
+<style>
+body {
+margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #fff;
+}
+.topnav a {
+  float: left;
+  color: #000000; 
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #ccc;
+  color: black;
+}
+.topnav a.active {
+  background-color: #012169;
+  color: white;     
+}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href=".">Home</a>
+  <a href="./upload_page.html">Upload</a>
+  <a href="./more_read_csv.php">View</a>
+  <a class="active" href="./instructions.html">How To</a>
+</div>
+<div style="padding-left:16px">
+	<br /><h3>Welcome to the QClab image database!</h3>
+	
+	To upload a nifti image and data click the upload button. You can upload either a Comma-Separated Value file containing image data along with a series of nifti images and masks, or upload individual nifti images keytyping in specific data associated with the image.<br /><br />
+
+	Uploaded nifti images can be viewed using Google's Neuroglancer. This can be accessed by either clicking the View button in the navigation bar to view the data and center slice images associated with uploaded nifti images or by clicking one of buttons showing a specific subset of images on the main page. By clicking the center slice image, an instance of neuroglancer is opened showing the nifti image and the mask of the image if uploaded. A selection to download the nifti image, the center slice image, and the data associated with the image.<br /><br />
+
+	The navigation bar allows for navigation between the several pages associated with the database. Click the Home button to go back to the landing page.<br /><br />
+
+	To run neuroglancer locally on your machine, follow the below instructions to ensure nifti images will appear appropriately. <br />
+	1.	Create a directory with images in nifti (*.nii) format (*.nii.gz files are also supported) <br /><br />
+	2.	Run the cors_webserver.py program in the neuroglancer github repository.  It can also be downloaded directly from: https://raw.githubusercontent.com/google/neuroglancer/master/cors_webserver.py
+	Run it as: python ./cors_webserver.py [-d <directory>] [-p <port>] [--bind <address>] <br /><br />
+	For example, if the images are in /my/directory, run it as:
+	python ./cors_webserver.py -d /my/directory
+	By default, it listens on localhost (127.0.0.1) only on port 9000. <br />
+	3.	On chrome open the following URL
+	http://neuroglancer-demo.appspot.com <br /><br />
+	4.	Specify the base channel file as source <br />
+	a.	nifti://http://127.0.0.1:9000/average_template_25.nii <br />
+	b.	This average template is a float 32, chick on the channel tab and divide getValue by 255.0 (decimal format) <br /><br />
+	void main() { <br />
+  		emitGrayscale(toNormalized(getDataValue()/255.0)); <br />
+	} <br /><br />
+	5.	Add the segmentation layer as an additional channel <br />
+	a.	nifti://http://127.0.0.1:9000/annotation_25_2017summer.nii <br />
+	b.	Change _'annotation_25_2017summer.nii':{'type':'image'_'source':' in the URL to _'annotation_25_2017summer.nii':{'type':segmentation'_'source':'
+	<br /><br />
+</div>
+</body>
+</html>
