@@ -1,4 +1,12 @@
 <?php  
+
+// $db = mysqli_connect("localhost", "root", "", "image_upload");
+// if(!$db)
+// die("no db");
+// if(!mysqli_select_db($db,"image_upload"))
+// die("No database selected.");
+
+
 function dateToAge($stringDate){
 	$mydate = date("Y-m-d",strtotime($stringDate));
 	$date = new DateTime($mydate);
@@ -33,7 +41,7 @@ if ( isset($_POST["submit"]) ) {
             }
         }
         $CSVfp = fopen("csv/".$_FILES["file"]["name"],"r");
-        $nw = fopen("csv/hi.csv","a");
+        $nw = fopen("csv/mycsv.csv","a");
         while (! feof($CSVfp)) {
         	$myline = fgetcsv($CSVfp,1000,",");
         	$myline[$datecol]=$chdate?dateToAge($myline[$datecol]):$myline[$datecol];
@@ -41,6 +49,9 @@ if ( isset($_POST["submit"]) ) {
 	        // foreach($myline as $value){
 	        // 	 echo $value;
 	        // }
+
+			// $sql = "INSERT INTO image_upload ('AnimalID','Brunno','Date','Genotype','Sex','DOB','Body Weight') VALUES ("$myline[0].','.$myline[1].','.$myline[2].','.$myline[3].','.$myline[4].','.$myline[5].','.$myline[6].','.$myline[7]")";
+
 	        fputcsv($nw,$myline);
 	        // echo "\n";
     	}

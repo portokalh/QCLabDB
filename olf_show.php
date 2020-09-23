@@ -32,7 +32,7 @@ print "<PRE>";
 echo "<table><tr><th>Animal ID</th><th>Brunno</th><th>Date</th><th>Genotype</th><th>Sex</th><th>Age</th><th>Neuroglancer</th></tr>";
 while(! feof($CSVfp)) {	
 	$data = fgetcsv($CSVfp, 1000, ",");
-	if ($ifq?$data[8] == $myspec:true) {
+	if ($ifq?$data[9] == $myspec:true) {
 		echo "<tr><td>".$data[0]."</td><td>".$data[1]."</td><td>".$data[2]."</td><td>".$data[3]."</td><td>".$data[4]."</td><td>".$data[5]."</td><td>";
 		echo "<a href=\"mylink.php?name=".strstr( $data[7], ".", true )."\"><img src=\"".$data[7]."\">\n</a></td>";
 		echo "<td><input type=\"checkbox\" name=\"checkbox[]\" value=\"".$data[0]."\"></td>";

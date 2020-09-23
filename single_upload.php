@@ -1,12 +1,28 @@
 <?php
+  // $db = mysqli_connect("localhost", "root", "", "image_upload");
+  // if(!$db)
+  // die("no db");
+  // if(!mysqli_select_db($db,"image_upload"))
+  // die("No database selected.");
+
+  // $sql = "INSERT INTO image_upload ('AnimalID','Brunno','Date','Genotype','Sex','DOB','Body Weight') VALUES (".$_GET('Animal').','.$_GET('Brunno')','.$_GET('date').','.$_GET('genotype').','.$_GET('sex').','.$_GET('DOB').','.$_GET('body_weight')")";
+  
+  // if (mysqli_query($db, $sql)) {
+  //  echo "New record created successfully";
+  // } else {
+  //  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  // }
+
+  $myline = $_GET('Animal').','.$_GET('Brunno').','.$_GET('date').','.$_GET('genotype').','.$_GET('sex').','.$_GET('DOB').','.$_GET('body_weight').',';
+
   // Initialize message variable
   $msg = "";
   // If upload button is clicked ...
   if (isset($_POST['Animal'])) {
     echo $Animal;
-    // $fp = fopen("csv/hi.csv","a");
-    //   fputcsv($fp,$data1);
-    // fclose($fp);
+    $fp = fopen("csv/mycsv.csv","a");
+      fputcsv($fp,$myline);
+    fclose($fp);
     // shell_exec("/Applications/MATLAB_R2020a.app/Contents/MacOS/MATLAB -nosplash -nodesktop -r \"getmidslice('".$image."'); quit();\"");
   }
 ?>
