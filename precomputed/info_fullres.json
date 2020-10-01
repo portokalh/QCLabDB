@@ -1,0 +1,13 @@
+{
+    "type": "image",
+    "num_channels": 1,
+    "data_type": "float32",
+    "scales": [
+        {
+            "encoding": "raw",
+            "size": [200, 180, 100],
+            "resolution": [99999.99403953552, 100000.00149011612, 100000.00149011612],
+            "voxel_offset": [0, 0, 0]
+        }
+    ]
+}
